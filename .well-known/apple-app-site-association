@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["75Y3S5CV88.com.cheyenne.poolstroke"],
+        "components": [{ "/": "/ss/*", "comment": "Straight Stroke friend invites" }]
+      }
+    ]
+  }
+}

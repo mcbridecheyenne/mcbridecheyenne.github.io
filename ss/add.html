@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Straight Stroke invite</title>
+<meta property="og:title" content="Duel me on Straight Stroke">
+<meta property="og:description" content="Tap to add me as a friend in Straight Stroke, the pool stroke app for Apple Watch.">
+<style>
+  :root { color-scheme: light dark; --felt:#0f5c3a; --ink:#f6f6f1; --muted:#cfe6d6; }
+  body { margin:0; min-height:100vh; font-family:-apple-system,system-ui,sans-serif; background:linear-gradient(#0f6b43,#0b3b27); color:var(--ink);
+         display:flex; align-items:center; justify-content:center; padding:24px 16px; box-sizing:border-box; }
+  main { max-width:420px; width:100%; text-align:center; }
+  .ball { width:84px; height:84px; border-radius:50%; background:radial-gradient(circle at 38% 32%,#fff,#d9d9d2); margin:0 auto 20px; position:relative; }
+  .ball::after { content:""; position:absolute; width:18px; height:18px; border-radius:50%; background:#2d6ec8; left:33px; top:33px; box-shadow:0 0 0 5px #f0902a; }
+  h1 { font-size:26px; margin:0 0 8px; }
+  p { color:var(--muted); line-height:1.45; margin:0 0 18px; }
+  .code { font:700 34px ui-monospace,Menlo,monospace; letter-spacing:6px; background:rgba(0,0,0,.25); border-radius:14px; padding:14px; margin:0 0 20px; }
+  a.btn { display:block; background:#f6f6f1; color:#0b3b27; text-decoration:none; font-weight:700; font-size:18px; padding:16px; border-radius:14px; margin-bottom:12px; }
+  small { color:var(--muted); display:block; line-height:1.45; }
+</style>
+</head>
+<body>
+<main>
+  <div class="ball" aria-hidden="true"></div>
+  <h1 id="title">You're invited to duel</h1>
+  <p id="sub">Add this player as a friend in Straight Stroke and challenge them to see who has the straightest stroke.</p>
+  <div class="code" id="code">——————</div>
+  <a class="btn" id="open" href="straightstroke://add">Open in Straight Stroke</a>
+  <small>Have the app already? Tap the button above. If it doesn't open, go to the Duel tab, type the friend code, and tap Add.<br><br>
+  Don't have it yet? Straight Stroke is in beta. Ask the person who sent this link for a TestFlight invite.</small>
+</main>
+<script>
+  const q = new URLSearchParams(location.search);
+  const code = (q.get('c') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+  const name = (q.get('n') || '').slice(0, 40);
+  if (code) {
+    document.getElementById('code').textContent = code;
+    document.getElementById('open').href = 'straightstroke://add?c=' + encodeURIComponent(code);
+  }
+  if (name) {
+    document.getElementById('title').textContent = name + ' wants to duel';
+    document.getElementById('sub').textContent = 'Add ' + name + ' as a friend in Straight Stroke and see who has the straightest stroke.';
+  }
+</script>
+</body>
+</html>
